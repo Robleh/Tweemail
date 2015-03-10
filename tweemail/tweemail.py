@@ -146,7 +146,8 @@ class TweetDbObject(object):
 
 #Search, check, print, store. Better way?
 def search(api):
-    for tweet in api.search(q=flags.query, result_type='recent', count=100):
+    for tweet in api.search(
+        q=flags.query, result_type='recent', count=100)[::-1]:
         if hasattr(tweet, 'retweeted_status') is False:
             tweet_object = TweetDbObject(tweet.user.screen_name,
                                          tweet.user.name,
